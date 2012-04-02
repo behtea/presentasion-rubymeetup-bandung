@@ -1,0 +1,44 @@
+<% content_for :script do %>
+  <script type="text/javascript">var current_user_id = "<%=current_user.id%>" </script>
+<% end %>
+<div id="container">
+	<div id="top-content">
+		<ul id="user-info">
+			<li>*le <%= current_user.username %></li>
+			<li><%= image_tag((current_user.avatar? ? current_user.avatar.url : "/noavatar.png"), :class => 'avatar') %></li>
+		</ul>
+		<div class="link-box">
+			<%= link_to('Edit', edit_user_registration_path) %> |
+			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+		</div>
+	</div>
+	<div id="chat-room">
+		<ol id="conversations">
+		</ol>
+	</div>
+	<div class="clear"></div>
+	<%= form_for("msg", :as => "", :url => send_msg_path, :remote => true) do |f| %>
+	<fieldset id="input-chat">
+		<%= f.text_field "msg", {:autocomplete => "off", :id => "chat-text"} %>
+		<%= f.submit "send", {:id => "submit"} %>
+	</fieldset>
+	<% end %>
+</div>
+
+<!--
+<% if user_signed_in? %>
+	<li>
+		Hi <%= current_user.username %>
+	</li>
+	<li>
+		<%= link_to('Edit', edit_user_registration_path) %>
+	</li>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>
+  </li>
+<% end %>
+-->

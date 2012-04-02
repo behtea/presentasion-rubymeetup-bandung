@@ -1,0 +1,4 @@
+$('#chat-text').val('');
+html_conversations = '<li class="comment"> <div class="comment-meta"> <img src="<%=@conversation[:avatar]%>" class="avatar" alt="avatar-chat"> <h4><%=@conversation[:username]%></h4> <span><%=@conversation[:time_msg]%></span> </div> <blockquote class="current_user"> <p><%=@conversation[:msg]%></p> </blockquote> </li>';
+$("#conversations").append(html_conversations);
+$("#chat-room").animate({ scrollTop: $(document).height() }, "slow");
